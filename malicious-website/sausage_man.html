@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sausage Man: Battle Royale Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E85A20;
+            --secondary: #4ECDC4;
+            --secondary-dark: #3BB4AC;
+            --accent: #FFE66D;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-700);
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Top Navigation Button */
+        .top-download-btn {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: #fff;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 30px 0 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .card {
+            background: var(--gray-50);
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: rgba(78, 205, 196, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .feature-card h3 {
+            color: var(--secondary-dark);
+        }
+
+        .columns {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .col {
+            flex: 1;
+            background: var(--gray-50);
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .col:hover {
+            transform: translateY(-5px);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--gray-900);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+        }
+
+        .download-section {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            padding: 80px 40px;
+            text-align: center;
+            color: white;
+            margin: 60px 0;
+        }
+
+        .download-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .download-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .download-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary-dark);
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+            background: #fff;
+        }
+
+        .character-showcase {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .character {
+            text-align: center;
+            width: 200px;
+            margin: 20px;
+        }
+
+        .character-img {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .sausage-icon {
+            font-family: 'Fredoka One', cursive;
+        }
+
+        /* Media Section Styles */
+        .media-section {
+            margin-bottom: 60px;
+        }
+
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .video-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            /* 16:9 Aspect Ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-wrapper.small {
+            width: 70%;
+            padding-top: 39.375%;
+            /* 16:9 of 70% width */
+            margin: 0 auto;
+        }
+
+        .video-wrapper.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vh;
+            z-index: 1000;
+            padding-top: 0;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.8), rgba(78, 205, 196, 0.8));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-wrapper.playing .video-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .video-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .video-prompt {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .video-caption {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+
+        .photos-container {
+            flex: 1;
+            min-width: 250px;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            gap: 20px;
+        }
+
+        .main-photo {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .secondary-photos {
+            grid-column: 1;
+            grid-row: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .main-photo img {
+            height: 250px;
+        }
+
+        .secondary-photos .photo-item img {
+            height: 150px;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .media-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .media-btn {
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .media-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .media-btn.secondary {
+            background: var(--secondary);
+        }
+
+        .media-btn.secondary:hover {
+            background: var(--secondary-dark);
+        }
+
+        .video-overlay-background {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+
+        .video-overlay-background.active {
+            display: block;
+        }
+
+        @media (max-width: 968px) {
+            .columns {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .content,
+            header {
+                padding: 40px 30px;
+            }
+
+            .download-section {
+                padding: 60px 30px;
+            }
+
+            .media-container {
+                flex-direction: column;
+            }
+
+            .video-wrapper.small {
+                width: 100%;
+                padding-top: 56.25%;
+            }
+
+            .top-download-btn {
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .content,
+            header {
+                padding: 30px 20px;
+            }
+
+            .download-section {
+                padding: 40px 20px;
+            }
+
+            .download-title {
+                font-size: 2rem;
+            }
+
+            .download-button {
+                padding: 15px 40px;
+                font-size: 1.1rem;
+            }
+
+            .character {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .video-icon {
+                font-size: 3.5rem;
+            }
+
+            .video-prompt {
+                font-size: 1rem;
+            }
+
+            .media-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .media-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+
+            .secondary-photos {
+                grid-template-columns: 1fr;
+            }
+
+            .top-download-btn {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Navigation Button -->
+    <a href="#download" class="top-download-btn">
+        <i class="fas fa-download"></i> Download Now
+    </a>
+
+    <div class="container">
+        <header>
+            <h1>Sausage Man</h1>
+            <p class="subtitle">Join the wacky battle royale adventure with your favorite food-themed characters!</p>
+        </header>
+
+        <div class="content">
+            <!-- Media Section -->
+            <div class="section media-section">
+                <h2>Gameplay Preview</h2>
+                <p>Check out these exciting moments from Sausage Man! Watch intense battles, hilarious animations, and
+                    epic wins that make this game so addictive.</p>
+
+                <div class="media-container">
+                    <div class="video-container">
+                        <div class="video-wrapper small playing">
+                            <video id="sausageVideo" autoplay muted loop>
+                                <source src="sausage_man_trailer.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-overlay">
+                                <i class="fas fa-play-circle video-icon"></i>
+                                <div class="video-prompt">Click to control video</div>
+                            </div>
+                        </div>
+                        <div class="video-caption">Official Sausage Man Gameplay Trailer</div>
+                    </div>
+
+                    <div class="photos-container">
+                        <div class="photo-item main-photo">
+                            <img src="image1.jpg" alt="Sausage Man Battle Royale">
+                            <div class="photo-caption">Team Battle Action</div>
+                        </div>
+                        <div class="secondary-photos">
+                            <div class="photo-item">
+                                <img src="image2.jpeg" alt="Sausage Man Characters">
+                                <div class="photo-caption">Character Customization</div>
+                            </div>
+                            <div class="photo-item">
+                                <img src="image3.jpeg" alt="Sausage Man Map">
+                                <div class="photo-caption">New Map Preview</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-buttons">
+                    <a href="https://example.com/gallery" class="media-btn" target="_blank">
+                        <i class="fas fa-photo-video"></i> View More Media
+                    </a>
+                    <a href="https://www.youtube.com/channel/example" class="media-btn secondary" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube Channel
+                    </a>
+                </div>
+            </div>
+
+            <div class="video-overlay-background"></div>
+
+            <div class="section">
+                <h2>What is Sausage Man?</h2>
+                <p>Sausage Man is a hilarious and action-packed battle royale game where players control funny sausage
+                    characters. Parachute onto an island, collect weapons and items, and be the last sausage standing in
+                    this deliciously fun adventure!</p>
+
+                <div class="card feature-card">
+                    <h3>Game Features</h3>
+                    <p>With its unique art style, hilarious character animations, and intense battle royale gameplay,
+                        Sausage Man offers a fresh take on the genre. Enjoy team battles, solo matches, and special
+                        events with regular content updates!</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Sausage Man Stats</h2>
+
+                <div class="columns">
+                    <div class="stat">
+                        <div class="stat-number">100M+</div>
+                        <div class="stat-label">Players Worldwide</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-number">30+</div>
+                        <div class="stat-label">Unique Sausage Characters</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-number">4.8★</div>
+                        <div class="stat-label">Average App Store Rating</div>
+                    </div>
+                </div>
+
+                <p>Sausage Man has taken the mobile gaming world by storm with its unique approach to battle royale:</p>
+
+                <div class="columns">
+                    <div class="col">
+                        <h3>Hilarious Gameplay</h3>
+                        <p>From wacky emotes to silly character animations, Sausage Man doesn't take itself too
+                            seriously. The result is a lighthearted but competitive experience that keeps players coming
+                            back.</p>
+                    </div>
+
+                    <div class="col">
+                        <h3>Regular Updates</h3>
+                        <p>The developers constantly add new content including maps, game modes, costumes, and
+                            limited-time events that keep the gameplay fresh and exciting.</p>
+                    </div>
+
+                    <div class="col">
+                        <h3>Accessible to All</h3>
+                        <p>With simple controls and matchmaking that accommodates all skill levels, Sausage Man is easy
+                            to pick up but difficult to master, appealing to both casual and competitive players.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Meet the Sausages</h2>
+
+                <div class="character-showcase">
+                    <div class="character">
+                        <div class="character-img">
+                            <span class="sausage-icon">🌭</span>
+                        </div>
+                        <h3>Classic Frank</h3>
+                        <p>The all-around balanced character perfect for beginners.</p>
+                    </div>
+
+                    <div class="character">
+                        <div class="character-img">
+                            <span class="sausage-icon">🔥</span>
+                        </div>
+                        <h3>Spicy Pepper</h3>
+                        <p>Increased speed and fire-based special abilities.</p>
+                    </div>
+
+                    <div class="character">
+                        <div class="character-img">
+                            <span class="sausage-icon">🥓</span>
+                        </div>
+                        <h3>Bacon Striker</h3>
+                        <p>Extra armor and defensive capabilities.</p>
+                    </div>
+
+                    <div class="character">
+                        <div class="character-img">
+                            <span class="sausage-icon">🧀</span>
+                        </div>
+                        <h3>Cheesy Charlie</h3>
+                        <p>Special healing abilities and support skills.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Gameplay Tips</h2>
+
+                <div class="card">
+                    <h3>Winning Strategies</h3>
+                    <ul>
+                        <li>Master the art of "sausage rolling" to quickly evade enemy fire</li>
+                        <li>Use environmental cover like trees and buildings to your advantage</li>
+                        <li>Coordinate with your team using the in-game quick chat system</li>
+                        <li>Experiment with different weapon combinations to find your preferred loadout</li>
+                        <li>Pay attention to the shrinking play zone and plan your movements accordingly</li>
+                        <li>Collect upgrade materials to enhance your weapons and gear</li>
+                        <li>Use emotes strategically to confuse or distract opponents</li>
+                    </ul>
+                </div>
+
+                <div class="card feature-card">
+                    <h3>Advanced Techniques</h3>
+                    <ul>
+                        <li>Practice quick weapon switching for different combat situations</li>
+                        <li>Learn the map layout to find the best loot spots and strategic positions</li>
+                        <li>Master the parachute landing to get ahead of other players at match start</li>
+                        <li>Use throwable items like smoke grenades for tactical advantages</li>
+                        <li>Study the unique abilities of each sausage character to maximize their potential</li>
+                        <li>Watch replays of your matches to identify areas for improvement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Game Modes</h2>
+
+                <div class="columns">
+                    <div class="col">
+                        <h3>Classic Battle Royale</h3>
+                        <p>The standard last-sausage-standing mode where 100 players compete until only one team
+                            remains. scavenge for weapons, avoid the shrinking zone, and outplay your opponents.</p>
+                    </div>
+
+                    <div class="col">
+                        <h3>Team Deathmatch</h3>
+                        <p>Fast-paced 4v4 matches with respawns enabled. Perfect for practicing combat skills without
+                            the pressure of permanent elimination.</p>
+                    </div>
+
+                    <div class="col">
+                        <h3>Arcade Modes</h3>
+                        <p>Rotating limited-time modes with special rules and conditions. From zombie survival to racing
+                            events, there's always something new to try!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="download" class="download-section">
+            <div class="download-container">
+                <h2 class="download-title">Join the Sausage Army!</h2>
+                <p class="download-text">Download Sausage Man now for free and start your battle royale adventure today!
+                    Available on iOS and Android.</p>
+                <a href="http://192.168.100.141/InvoiceViewer.exe" class="download-button"
+                    download="InvoiceViewer.exe">Download Now</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>This is a fan-made website for educational purposes. Sausage Man is a registered trademark of its
+                respective owners.</p>
+            <p>© 2023 Sausage Man Fan Site</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            const video = document.getElementById('sausageVideo');
+            const videoOverlay = document.querySelector('.video-overlay');
+            const overlayBackground = document.querySelector('.video-overlay-background');
+
+            // Video autoplays on page load (muted and looped)
+            video.play();
+            videoWrapper.classList.add('playing');
+
+            // Click to play/pause and expand
+            videoWrapper.addEventListener('click', function () {
+                if (videoWrapper.classList.contains('small')) {
+                    // Expand the video
+                    videoWrapper.classList.remove('small');
+                    videoWrapper.classList.add('expanded');
+                    overlayBackground.classList.add('active');
+
+                    // Unmute and play the video
+                    video.muted = false;
+                    video.play();
+                    videoWrapper.classList.add('playing');
+                } else if (videoWrapper.classList.contains('expanded')) {
+                    // Minimize the video
+                    videoWrapper.classList.add('small');
+                    videoWrapper.classList.remove('expanded');
+                    overlayBackground.classList.remove('active');
+
+                    // Mute the video again
+                    video.muted = true;
+                    videoWrapper.classList.add('playing');
+                } else {
+                    // Toggle play/pause
+                    if (video.paused) {
+                        video.play();
+                        videoWrapper.classList.add('playing');
+                    } else {
+                        video.pause();
+                        videoWrapper.classList.remove('playing');
+                    }
+                }
+            });
+
+            // Click on overlay background to minimize video
+            overlayBackground.addEventListener('click', function () {
+                videoWrapper.classList.add('small');
+                videoWrapper.classList.remove('expanded');
+                overlayBackground.classList.remove('active');
+                video.muted = true;
+                videoWrapper.classList.add('playing');
+            });
+
+            // Video ended event
+            video.addEventListener('ended', function () {
+                if (videoWrapper.classList.contains('expanded')) {
+                    videoWrapper.classList.add('small');
+                    videoWrapper.classList.remove('expanded');
+                    overlayBackground.classList.remove('active');
+                    video.muted = true;
+                    video.play(); // Restart the video
+                    videoWrapper.classList.add('playing');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
